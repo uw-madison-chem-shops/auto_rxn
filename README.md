@@ -11,13 +11,21 @@ TODO
 
 ## usage
 
-TODO
+`auto_rxn` is primarily a command-line Python application.
+Once hardware is configured, reactions can be run by passing a valid recipe_file on the command line.
+
+```bash
+$ auto_rxn run <recipe_file> --rxn_name "my cool reaction"
+```
+
+The `rxn_name` parameter is optional.
 
 ## integrating hardware
 
-TODO
+`auto_rxn` has built-in hardware support for a few models of hardware, under the package `auto_rxn.hardware`.
+Beyond this, `auto_rxn` supports the Bluesky Hardware protocol standard.
 
-## recipie files
+## recipe files
 
 TODO
 
