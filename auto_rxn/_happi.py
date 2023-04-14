@@ -1,6 +1,6 @@
-import appdirs
+import appdirs  # type: ignore
 import pathlib
-import happi
+import happi  # type: ignore
 
 # make happi client
 db_path = pathlib.Path(appdirs.user_data_dir("happi")) / "db.json"
