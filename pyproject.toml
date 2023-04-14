@@ -9,7 +9,9 @@ author = "auto_rxn developers"
 home-page = "https://github.com/uw-madison-chem-shops/auto_rxn"
 description-file = "README.md"
 requires-python = ">=3.7"
-requires = []
+requires = ["click",
+            "happi",
+            ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Science/Research",
@@ -34,6 +36,9 @@ dev = ["black", "pre-commit"]
 [tool.flit.scripts]
 auto_rxn = "auto_rxn.__main__:main"
 
+[tool.flit.entrypoints."happi.containers"]
+fake_mfc = "auto_rxn.devices._fake_mfc"
+
 [tool.black]
 line-length = 99
 target-version = ['py311']
@@ -51,4 +56,3 @@ exclude = '''
   | dist
 )/
 '''
-
