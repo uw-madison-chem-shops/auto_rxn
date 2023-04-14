@@ -26,4 +26,3 @@ except:
 
 if __branch__:
     __version__ += "+" + __branch__
-
