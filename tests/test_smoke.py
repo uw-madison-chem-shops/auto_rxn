@@ -2,4 +2,4 @@ import auto_rxn
 
 
 def test_smoke():
-    print auto_rxn
+    print(auto_rxn)
