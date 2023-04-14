@@ -19,5 +19,5 @@ repos:
     rev: v1.2.0
     hooks:
       - id: mypy
-        exclude: ^docs/conf.py
+        exclude: ^tests/*
 
