@@ -10,8 +10,7 @@ from ._status import Status
 
 
 class FakeMFC:
-
-    def __init__(self, name:str):
+    def __init__(self, name: str):
         self.name = name
 
     def describe(self) -> dict:
