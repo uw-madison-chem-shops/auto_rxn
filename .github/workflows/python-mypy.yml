@@ -20,4 +20,4 @@ jobs:
         python -m pip install .
     - name: Run mypy
       run: |
-        mypy rxn_control
+        mypy auto_rxn
