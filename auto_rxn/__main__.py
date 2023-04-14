@@ -1,2 +1,3 @@
 def main():
-    return "hello world"
+    print("hello world")
+    return 0
