@@ -9,7 +9,8 @@ author = "auto_rxn developers"
 home-page = "https://github.com/uw-madison-chem-shops/auto_rxn"
 description-file = "README.md"
 requires-python = ">=3.7"
-requires = ["click",
+requires = ["appdirs",
+            "click",
             "happi",
             ]
 classifiers = [
