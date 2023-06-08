@@ -10,7 +10,7 @@ import pandas as pd
 
 @dataclass
 class Step:
-    length: [int, float]
+    length: Union[int, float]
     setpoints: Dict[str, Union[int, float]]
 
 
