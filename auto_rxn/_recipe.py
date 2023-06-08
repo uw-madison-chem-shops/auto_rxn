@@ -15,7 +15,6 @@ class Step:
 
 
 class Recipe:
-
     def __init__(self, filepath):
         self._df = pd.read_csv(filepath)
         self.control_point_ids = list(self._df.keys()[1:])
