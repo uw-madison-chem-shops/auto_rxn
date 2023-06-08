@@ -6,6 +6,6 @@ __here__ = pathlib.Path(__file__).parent
 
 
 def test_run():
-    path = __here__ / "rxn_control_input.csv"
+    path = __here__ / "recipe.csv"
     recipe = auto_rxn.Recipe(path)
     auto_rxn.run(recipe)
