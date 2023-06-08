@@ -1,0 +1,6 @@
+Control Point ID,auto_rxn:FakeMFC,auto_rxn:FakeFurnace
+Random Metadata,test1,test2
+RECIPE_STARTS_BELOW,,
+1,10,100
+2,20,200
+3,30,300
