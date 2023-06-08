@@ -31,5 +31,8 @@ Beyond this, `auto_rxn` supports the Bluesky Hardware protocol standard.
 
 ## recipe files
 
-TODO
+must have metadata:
+- `Control Point ID` (e.g. auto_rxn:FakeMFC)
 
+optional metadata
+- control point name
