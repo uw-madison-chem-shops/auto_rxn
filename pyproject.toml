@@ -12,6 +12,7 @@ requires-python = ">=3.7"
 requires = ["appdirs",
             "click",
             "happi",
+            "pandas",
             ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -38,6 +39,7 @@ dev = ["black", "pre-commit"]
 auto_rxn = "auto_rxn.__main__:main"
 
 [tool.flit.entrypoints."happi.containers"]
+fake_furnace = "auto_rxn.devices._fake_furnace"
 fake_mfc = "auto_rxn.devices._fake_mfc"
 
 [tool.black]
