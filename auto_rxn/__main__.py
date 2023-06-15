@@ -4,6 +4,8 @@ import click
 
 from ._happi import happi_client
 from .__version__ import __version__
+from ._recipe import Recipe
+from ._run import run
 
 
 @click.group()
@@ -20,5 +22,7 @@ def _list_devices():
 
 
 @main.command(name="run")
-def _run():
-    print("run not yet implemented, exiting")
+@click.argument("recipe", type=click.Path())
+def _run(recipe):
+    r = Recipe(recipe)
+    run(r)
