@@ -18,6 +18,7 @@ jobs:
         python -m pip install --upgrade pip!=22.1.*
         python -m pip install --upgrade mypy
         python -m pip install --upgrade pandas-stubs
+        python -m pip install --upgrade types-appdirs
         python -m pip install .
     - name: Run mypy
       run: |

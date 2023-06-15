@@ -1,4 +1,4 @@
-Control Point ID,auto_rxn:FakeMFC,auto_rxn:FakeFurnace
+Control Point ID,mymfc,myfurnace
 Random Metadata,test1,test2
 RECIPE_STARTS_BELOW,,
 1,10,100
