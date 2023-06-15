@@ -4,7 +4,7 @@ __all__ = ["with_happi_db"]
 import pathlib
 
 import appdirs
-import happi
+import happi  # type: ignore
 
 from . import _happi as auto_rxn_happi
 
