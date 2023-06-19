@@ -2,6 +2,7 @@ __all__ = ["FakeFurnace", "FakeFurnaceItem"]
 
 
 import copy
+import time
 
 from happi.item import HappiItem, EntryInfo  # type: ignore
 
@@ -12,15 +13,27 @@ from ._status import Status
 class FakeFurnace:
     def __init__(self, name: str):
         self.name = name
+        self.parent = None
+        self.value = 0.0
 
     def describe(self) -> dict:
-        raise NotImplementedError
+        out = dict()
+        out[f"{self.name}_setpoint"] = {"source": "FakeFurnace", "dtype": "number", "shape": []}
+        out[f"{self.name}_readback"] = {"source": "FakeFurnace", "dtype": "number", "shape": []}
+        return out
 
     def read(self) -> Reading:
-        raise NotImplementedError
+        ts = time.time()
+        out = dict()
+        out[f"{self.name}_setpoint"] = {"value": self.value, "timestamp": ts}
+        out[f"{self.name}_readback"] = {"value": self.value, "timestamp": ts}
+        return out
 
     def set(self, value) -> Status:
-        raise NotImplementedError
+        self.value = value
+        s = Status()
+        s.set_finished()
+        return s
 
 
 class FakeFurnaceItem(HappiItem):
