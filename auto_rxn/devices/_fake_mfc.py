@@ -37,6 +37,7 @@ class FakeMFC:
         def done_later():
             time.sleep(0.1)
             st.set_finished()
+
         threading.Thread(target=done_later).start()
 
         return st
