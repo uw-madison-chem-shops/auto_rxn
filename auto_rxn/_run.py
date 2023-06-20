@@ -6,7 +6,7 @@ import pathlib
 
 import bluesky
 from bluesky.callbacks.best_effort import BestEffortCallback
-from suitcase.csv import Serializer
+from suitcase.csv import Serializer  # type: ignore
 
 
 def run(recipe):
