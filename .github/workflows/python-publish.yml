@@ -20,8 +20,11 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
+        python -m pip install setuptools==67.8.0
         python -m pip install --upgrade pip!=22.1.*
-        pip install flit
+        python -m pip install --upgrade wheel pytest numpy flit
+        python -m pip install --upgrade appdirs click happi pandas bluesky suitcase-csv matplotlib
+        python -m pip install . --no-build-isolation
     - name: Build and publish
       env:
         FLIT_USERNAME: ${{ secrets.PYPI_USERNAME }}
