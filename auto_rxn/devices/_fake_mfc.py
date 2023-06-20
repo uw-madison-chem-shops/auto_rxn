@@ -4,6 +4,7 @@ __all__ = ["FakeMFC", "FakeMFCItem"]
 import copy
 import time
 import threading
+from typing import Dict
 
 from happi.item import HappiItem, EntryInfo  # type: ignore
 
@@ -23,7 +24,7 @@ class FakeMFC:
         out[f"{self.name}_readback"] = {"source": "FakeMFC", "dtype": "number", "shape": []}
         return out
 
-    def read(self) -> Reading:
+    def read(self) -> dict:
         ts = time.time()
         out = dict()
         out[f"{self.name}_setpoint"] = {"value": self.value, "timestamp": ts}

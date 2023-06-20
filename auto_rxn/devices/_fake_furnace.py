@@ -22,7 +22,7 @@ class FakeFurnace:
         out[f"{self.name}_readback"] = {"source": "FakeFurnace", "dtype": "number", "shape": []}
         return out
 
-    def read(self) -> Reading:
+    def read(self) -> dict:
         ts = time.time()
         out = dict()
         out[f"{self.name}_setpoint"] = {"value": self.value, "timestamp": ts}
