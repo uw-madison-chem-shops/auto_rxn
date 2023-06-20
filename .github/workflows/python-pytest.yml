@@ -23,7 +23,7 @@ jobs:
         python -m pip install setuptools==67.8.0
         python -m pip install --upgrade pip!=22.1.*
         python -m pip install --upgrade wheel pytest numpy flit
-        python -m pip install --upgrade appdirs click happi pandas bluesky suitcase-csv
+        python -m pip install --upgrade appdirs click happi pandas bluesky suitcase-csv matplotlib
         python -m pip install . --no-build-isolation
     - name: Pytest
       run: |
