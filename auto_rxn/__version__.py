@@ -10,10 +10,8 @@ here = pathlib.Path(__file__).resolve().parent
 
 __all__ = ["__version__", "__branch__"]
 
+__version__ = "2023.6.1"
 
-# read from VERSION file
-with open(str(here / "VERSION")) as f:
-    __version__ = f.read().strip()
 
 try:
     __branch__ = (

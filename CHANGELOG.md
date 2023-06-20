@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [2023.6.1]
+
+### Fixed
+- no python changes, just remove VERISON file in favor of __version__.py
+
 ## [2023.6.0]
 
 ### Added
@@ -15,7 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/-/compare/v2023.6.0...main
+[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/-/compare/v2023.6.1...main
+[2023.6.1]: https://github.com/uw-madison-chem-shops/auto_rxn/-/compare/v2023.6.0...2023.6.1
 [2023.6.0]: https://github.com/uw-madison-chem-shops/auto_rxn/-/compare/v2023.4.0...2023.6.0
 [2023.4.0]: https://github.com/uw-madison-chem-shops/auto_rxn/-/tags/v2023.4.0
 
