@@ -2,7 +2,7 @@
 
 import click
 
-from ._happi import happi_client
+from ._device import happi_client
 from .__version__ import __version__
 from ._recipe import Recipe
 from ._run import run
@@ -19,6 +19,14 @@ def _list_devices():
     for item, result in happi_client.items():
         print(item)
         print(f"    device_class: {result.metadata['device_class']}")
+        try:
+            print(f"    lower_safety_limit: {result.metadata['auto_rxn_lower_safety_limit']}")
+        except KeyError:
+            print(f"    lower_safety_limit: None")
+        try:
+            print(f"    upper_safety_limit: {result.metadata['auto_rxn_upper_safety_limit']}")
+        except KeyError:
+            print(f"    upper_safety_limit: None")
 
 
 @main.command(name="run")

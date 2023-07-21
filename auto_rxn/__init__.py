@@ -5,3 +5,4 @@ from .__version__ import *
 from ._recipe import *
 from ._run import *
 from ._testing import *
+from ._device import *
