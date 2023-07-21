@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [2023.6.1]
 
+### Added
+- concept of limits for hardware, if out of bounds go back to safe position
+
 ### Fixed
 - no python changes, just remove VERISON file in favor of __version__.py
 
