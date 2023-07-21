@@ -39,6 +39,7 @@ def run(recipe):
             for step in recipe.steps:
                 nestargs = [(devices[id], float(val)) for id, val in step.setpoints.items()]
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
+
                 def fallback_to_safety(exception):
                     # set to most recent known good position (currently all zero... todo)
                     nestargs = [(devices[id], 0.0) for id, val in step.setpoints.items()]
@@ -50,6 +51,7 @@ def run(recipe):
                         delay=1,
                     )
                     raise RequestStop
+
                 @bluesky.preprocessors.contingency_decorator(except_plan=fallback_to_safety)
                 def count_until_next_set():
                     yield from bluesky.plan_stubs.repeat(
@@ -57,6 +59,7 @@ def run(recipe):
                         num=int(float(step.length) * 60),
                         delay=1,
                     )
+
                 yield from count_until_next_set()
 
         return (yield from inner_plan())

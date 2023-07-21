@@ -12,6 +12,6 @@ class SafetyCallback(object):
 
     def __call__(self, name, document):
         """Consumes the document stream."""
-        self.i +=1
+        self.i += 1
         if self.i == 6:
             raise Exception
