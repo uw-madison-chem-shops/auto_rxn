@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- actually check safety limits within SafetyCallback
+
 ## [2023.6.1]
 
 ### Added

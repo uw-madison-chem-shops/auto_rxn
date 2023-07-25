@@ -20,10 +20,10 @@ def load_device(id):
     item = happi_client.find_item(name=id)
     setattr(device, "_happi_item", item)
     # limits
-    if not hasattr(item, "auto_rxn_lower_safety_limit"):
+    if not "auto_rxn_lower_safety_limit" in item.keys():
         item.info_names.append("auto_rxn_lower_safety_limit")
         item.auto_rxn_lower_safety_limit = None
-    if not hasattr(item, "auto_rxn_upper_safety_limit"):
+    if not "auto_rxn_upper_safety_limit" in item.keys():
         item.info_names.append("auto_rxn_upper_safety_limit")
         item.auto_rxn_upper_safety_limit = None
     if hasattr(device, "yaq_traits"):
