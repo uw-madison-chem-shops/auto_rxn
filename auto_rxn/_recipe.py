@@ -43,7 +43,6 @@ class Recipe:
                 row_index += 1
             except KeyError:
                 break
-        print(self.steps)
 
     def save(self, filepath) -> pathlib.Path:
         raise NotImplementedError
