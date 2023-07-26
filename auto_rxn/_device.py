@@ -15,22 +15,33 @@ happi_client = happi.Client(database=happi_backend)
 
 def load_device(id):
     """Load a device via happi, monkeypatching as needed."""
-    # grab device from happi
-    device = happi_client.load_device(name=id)
-    item = happi_client.find_item(name=id)
-    setattr(device, "_happi_item", item)
-    # limits
-    if not "auto_rxn_lower_safety_limit" in item.keys():
-        item.info_names.append("auto_rxn_lower_safety_limit")
-        item.auto_rxn_lower_safety_limit = None
-    if not "auto_rxn_upper_safety_limit" in item.keys():
-        item.info_names.append("auto_rxn_upper_safety_limit")
-        item.auto_rxn_upper_safety_limit = None
-    if hasattr(device, "yaq_traits"):
-        if "has-limits" in device.yaq_traits:
-            lower, upper = device.yaq_client.get_limits()
-            item.auto_rxn_lower_safety_limit = np.nanmax(lower, item.auto_rxn_lower_safety_limit)
-            item.auto_rxn_upper_safety_limit = np.nanmin(upper, item.auto_rxn_upper_safety_limit)
-    # finish
-    item.save()
-    return device
+    if "." in id:
+        chain = id.split(".")
+        device = happi_client.load_device(name=chain.pop(0))
+        while chain:
+            device = getattr(device, chain.pop(0))
+        return device
+    else:
+        # grab device from happi
+        device = happi_client.load_device(name=id)
+        item = happi_client.find_item(name=id)
+        setattr(device, "_happi_item", item)
+        # limits
+        if not "auto_rxn_lower_safety_limit" in item.keys():
+            item.info_names.append("auto_rxn_lower_safety_limit")
+            item.auto_rxn_lower_safety_limit = None
+        if not "auto_rxn_upper_safety_limit" in item.keys():
+            item.info_names.append("auto_rxn_upper_safety_limit")
+            item.auto_rxn_upper_safety_limit = None
+        if hasattr(device, "yaq_traits"):
+            if "has-limits" in device.yaq_traits:
+                lower, upper = device.yaq_client.get_limits()
+                item.auto_rxn_lower_safety_limit = np.nanmax(
+                    lower, item.auto_rxn_lower_safety_limit
+                )
+                item.auto_rxn_upper_safety_limit = np.nanmin(
+                    upper, item.auto_rxn_upper_safety_limit
+                )
+        # finish
+        item.save()
+        return device

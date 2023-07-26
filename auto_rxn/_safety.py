@@ -16,10 +16,12 @@ class SafetyCallback(object):
             return
         data = document["data"]
         for name, device in self.devices.items():
+            if "." in name:
+                continue
             for suffix in ["setpoint", "readback"]:
                 key = "_".join([name, "readback"])
                 if key not in data:
-                    return
+                    continue
                 if device._happi_item["auto_rxn_lower_safety_limit"] is not None:
                     if data[key] < device._happi_item["auto_rxn_lower_safety_limit"]:
                         print(f"{name} went below safety limit!")
