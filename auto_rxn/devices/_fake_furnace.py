@@ -27,8 +27,16 @@ class PropertyDevice(object):
 
     def describe(self) -> dict:
         out = dict()
-        out[f"{self.parent.name}_{self.name}_readback"] = {"source": "FakeFurnace", "dtype": "number", "shape": []}
-        out[f"{self.parent.name}_{self.name}_setpoint"] = {"source": "FakeFurnace", "dtype": "number", "shape": []}
+        out[f"{self.parent.name}_{self.name}_readback"] = {
+            "source": "FakeFurnace",
+            "dtype": "number",
+            "shape": [],
+        }
+        out[f"{self.parent.name}_{self.name}_setpoint"] = {
+            "source": "FakeFurnace",
+            "dtype": "number",
+            "shape": [],
+        }
         return out
 
     def read(self) -> dict:
