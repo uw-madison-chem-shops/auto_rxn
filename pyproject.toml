@@ -8,7 +8,7 @@ dist-name = "auto_rxn"
 author = "auto_rxn developers"
 home-page = "https://github.com/uw-madison-chem-shops/auto_rxn"
 description-file = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 requires = ["appdirs",
             "click",
             "happi",
@@ -22,8 +22,6 @@ classifiers = [
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
