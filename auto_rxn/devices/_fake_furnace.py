@@ -12,7 +12,6 @@ from ._status import Status
 
 class PropertyDevice(object):
     def __init__(self, parent, name):
-        print(parent, name)
         self.parent = parent
         self.name = name
         self._setpoint = float("nan")
