@@ -5,6 +5,8 @@ import appdirs  # type: ignore
 import pathlib
 import happi  # type: ignore
 import numpy as np
+from typing import Dict
+from bluesky import protocols
 
 
 # make happi client
@@ -13,11 +15,11 @@ happi_backend = happi.backends.backend(db_path)
 happi_client = happi.Client(database=happi_backend)
 
 
-# singleton container
-device_singletons = dict()
+# singleton container for root devices
+device_singletons: Dict["str", protocols.Readable] = dict()
 
 
-def load_device(id):
+def load_device(id) -> protocols.Readable:
     """Load a device via happi, monkeypatching as needed."""
     if id in device_singletons:
         return device_singletons[id]
