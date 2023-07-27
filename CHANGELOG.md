@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - actually check safety limits within SafetyCallback
 - support for child devices
+- support for fallback position
 
 ## [2023.6.1]
 
