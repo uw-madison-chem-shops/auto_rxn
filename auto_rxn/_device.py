@@ -1,11 +1,13 @@
 __all__ = ["load_device"]
 
 
-import appdirs  # type: ignore
 import pathlib
+from typing import Dict, Any, Union
+import types
+
+import appdirs  # type: ignore
 import happi  # type: ignore
 import numpy as np
-from typing import Dict, Any
 from bluesky import protocols
 
 
@@ -55,6 +57,20 @@ def load_device(id) -> Any:
                 item.auto_rxn_upper_safety_limit = np.nanmin(
                     upper, item.auto_rxn_upper_safety_limit
                 )
+        # fallback position
+
+        def get_fallback_position(self) -> [float, None]:
+            return self._happi_item.auto_rxn_fallback_position
+
+        def set_fallback_position(self, position: Union[float, None]):
+            self._happi_item.auto_rxn_fallback_position = position
+            self._happi_item.save()
+
+        device.get_fallback_position = types.MethodType(get_fallback_position, device)
+        device.set_fallback_position = types.MethodType(set_fallback_position, device)
+        if not "auto_rxn_fallback_position" in item.keys():
+            item.info_names.append("auto_rxn_fallback_position")
+            item.auto_rxn_fallback_position = None
         # finish
         item.save()
         device_singletons[id] = device
