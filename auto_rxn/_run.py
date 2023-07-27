@@ -37,6 +37,7 @@ def run(recipe):
         @bluesky.preprocessors.run_decorator()
         def inner_plan():
             for step in recipe.steps:
+                print(devices)
                 nestargs = [(devices[id], float(val)) for id, val in step.setpoints.items()]
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 

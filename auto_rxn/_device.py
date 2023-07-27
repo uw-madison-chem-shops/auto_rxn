@@ -13,11 +13,22 @@ happi_backend = happi.backends.backend(db_path)
 happi_client = happi.Client(database=happi_backend)
 
 
+# singleton container
+device_singletons = dict()
+
+
 def load_device(id):
     """Load a device via happi, monkeypatching as needed."""
-    if "." in id:
+    if id in device_singletons:
+        return device_singletons[id]
+    elif "." in id:
         chain = id.split(".")
-        device = happi_client.load_device(name=chain.pop(0))
+        root = chain.pop(0)
+        if root in device_singletons:
+            device = device_singletons[root]
+        else:
+            device = happi_client.load_device(name=root)
+            device_singletons[root] = device
         while chain:
             device = getattr(device, chain.pop(0))
         return device
@@ -44,4 +55,5 @@ def load_device(id):
                 )
         # finish
         item.save()
+        device_singletons[id] = device
         return device
