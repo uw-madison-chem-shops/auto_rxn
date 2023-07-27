@@ -59,8 +59,8 @@ def load_device(id) -> Any:
                 )
         # fallback position
 
-        def get_fallback_position(self) -> [float, None]:
-            return self._happi_item.auto_rxn_fallback_position
+        def get_fallback_position(self) -> Union[float, None]:
+            return self._happi_item["auto_rxn_fallback_position"]
 
         def set_fallback_position(self, position: Union[float, None]):
             self._happi_item.auto_rxn_fallback_position = position

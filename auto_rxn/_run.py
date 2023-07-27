@@ -47,7 +47,11 @@ def run(recipe):
 
                 def fallback_to_safety(exception):
                     # set to most recent known good position (currently all zero... todo)
-                    nestargs = [(devices[id], 0.0) for id, val in step.setpoints.items()]
+                    nestargs = list()
+                    for device in devices.values():
+                        fallback = device.get_fallback_position()
+                        if fallback is not None:
+                            nestargs.append((device, fallback))
                     yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
                     # keep recording data for 100 more seconds
                     yield from bluesky.plan_stubs.repeat(
