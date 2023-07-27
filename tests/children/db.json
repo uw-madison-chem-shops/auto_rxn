@@ -1,0 +1,34 @@
+{
+    "myfurnace": {
+        "_id": "myfurnace",
+        "active": true,
+        "args": [],
+        "auto_rxn_lower_safety_limit": null,
+        "auto_rxn_upper_safety_limit": null,
+        "creation": "Thu Jun  8 15:05:57 2023",
+        "device_class": "auto_rxn.devices.FakeFurnace",
+        "documentation": null,
+        "kwargs": {
+            "name": "{{name}}"
+        },
+        "last_edit": "Wed Jul 26 20:10:22 2023",
+        "name": "myfurnace",
+        "type": "fake_furnace.devices._fake_furnace.FakeFurnaceItem"
+    },
+    "mymfc": {
+        "_id": "mymfc",
+        "active": true,
+        "args": [],
+        "auto_rxn_lower_safety_limit": null,
+        "auto_rxn_upper_safety_limit": null,
+        "creation": "Fri Apr 14 16:44:36 2023",
+        "device_class": "auto_rxn.devices.FakeMFC",
+        "documentation": null,
+        "kwargs": {
+            "name": "{{name}}"
+        },
+        "last_edit": "Wed Jul 26 20:10:22 2023",
+        "name": "mymfc",
+        "type": "fake_mfc.devices._fake_mfc.FakeMFCItem"
+    }
+}
