@@ -1,0 +1,7 @@
+Control Point ID,mymfc,myfurnace,myfurnace.fallback_position
+Random Metadata,test1,test2
+RECIPE_STARTS_BELOW,,
+0.1,10,100,50
+0.1,20,200,50
+0.2,30,300,50
+0,10,100,50

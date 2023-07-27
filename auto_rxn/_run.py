@@ -36,13 +36,22 @@ def run(recipe):
         @bluesky.preprocessors.stage_decorator(all_devices)
         @bluesky.preprocessors.run_decorator()
         def inner_plan():
-            for step in recipe.steps:
+            for step, fallback_positions in zip(recipe.steps, recipe.fallback_positions):
+                # set fallback positions
+                for id, val in fallback_positions.setpoints.items():
+                    devices[id].set_fallback_position(val)
+
+                # set positions
                 nestargs = [(devices[id], float(val)) for id, val in step.setpoints.items()]
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 
                 def fallback_to_safety(exception):
                     # set to most recent known good position (currently all zero... todo)
-                    nestargs = [(devices[id], 0.0) for id, val in step.setpoints.items()]
+                    nestargs = list()
+                    for device in devices.values():
+                        fallback = device.get_fallback_position()
+                        if fallback is not None:
+                            nestargs.append((device, fallback))
                     yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
                     # keep recording data for 100 more seconds
                     yield from bluesky.plan_stubs.repeat(

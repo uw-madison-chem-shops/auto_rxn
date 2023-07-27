@@ -27,6 +27,10 @@ def _list_devices():
             print(f"    upper_safety_limit: {result.metadata['auto_rxn_upper_safety_limit']}")
         except KeyError:
             print(f"    upper_safety_limit: None")
+        try:
+            print(f"    fallback_posiiton: {result.metadata['auto_rxn_fallback_position']}")
+        except KeyError:
+            print(f"    fallback_posiiton: None")
 
 
 @main.command(name="run")

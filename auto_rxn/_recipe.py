@@ -17,7 +17,12 @@ class Step:
 class Recipe:
     def __init__(self, filepath):
         self._df = pd.read_csv(filepath)
-        self.control_point_ids = list(self._df.keys()[1:])
+        self.control_point_ids = [
+            k for k in self._df.keys()[1:] if not k.endswith("fallback_position")
+        ]
+        self.fallback_position_ids = [
+            k for k in self._df.keys()[1:] if k.endswith("fallback_position")
+        ]
         # read in metadata row by row, until see recipe start
         self.metadata: Dict[str, Dict[str, str]] = {k: {} for k in self.control_point_ids}
         row_index = 0
@@ -32,14 +37,23 @@ class Recipe:
             row_index += 1
         # now the rest of the dataframe contains recipe steps
         self.steps: List[Step] = []
+        self.fallback_positions: List[Step] = []
         row_index += 1
         while True:
             try:
                 row = self._df.loc[row_index]
+                # setpoints
                 length = row["Control Point ID"]
                 setpoints = {k: row[k] for k in self.control_point_ids}
                 step = Step(length=length, setpoints=setpoints)
                 self.steps.append(step)
+                # fallback positions
+                setpoints = {
+                    k.removesuffix(".fallback_position"): row[k]
+                    for k in self.fallback_position_ids
+                }
+                step = Step(length=length, setpoints=setpoints)
+                self.fallback_positions.append(step)
                 row_index += 1
             except KeyError:
                 break

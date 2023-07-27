@@ -15,6 +15,7 @@ def with_happi_db(path):
             # make happi client
             auto_rxn_happi.happi_backend = happi.backends.backend(path)
             auto_rxn_happi.happi_client = happi.Client(database=auto_rxn_happi.happi_backend)
+            auto_rxn_happi.device_singletons = dict()
 
             function()
 
