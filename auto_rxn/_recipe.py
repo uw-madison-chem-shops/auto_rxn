@@ -59,4 +59,6 @@ class Recipe:
                 break
 
     def save(self, filepath) -> pathlib.Path:
-        raise NotImplementedError
+        path = pathlib.Path(filepath)
+        self._df.to_csv(path, index=False)
+        return path
