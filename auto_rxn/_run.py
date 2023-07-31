@@ -41,7 +41,7 @@ def run(recipe):
     shutil.copyfile(db_path, datadir / "db.json")
 
     safety = SafetyCallback(devices)
-    RE.subscribe(safety, "all")
+    safety_token = RE.subscribe(safety, "all")
 
     def plan():
         @bluesky.preprocessors.stage_decorator(all_devices)
@@ -57,13 +57,14 @@ def run(recipe):
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 
                 def fallback_to_safety(exception):
-                    # set to most recent known good position (currently all zero... todo)
+                    RE.unsubscribe(safety_token)  # don't want to keep raising
                     nestargs = list()
                     for device in devices.values():
                         fallback = device.get_fallback_position()
                         if fallback is not None:
                             nestargs.append((device, fallback))
-                    yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
+                    if nestargs:
+                        yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
                     # keep recording data for 100 more seconds
                     yield from bluesky.plan_stubs.repeat(
                         functools.partial(bluesky.plan_stubs.one_shot, all_devices),

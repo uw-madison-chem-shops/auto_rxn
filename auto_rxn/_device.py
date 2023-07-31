@@ -52,10 +52,10 @@ def load_device(id) -> Any:
             if "has-limits" in device.yaq_traits:
                 lower, upper = device.yaq_client.get_limits()
                 item.auto_rxn_lower_safety_limit = np.nanmax(
-                    lower, item.auto_rxn_lower_safety_limit
+                    [lower, item["auto_rxn_lower_safety_limit"]]
                 )
                 item.auto_rxn_upper_safety_limit = np.nanmin(
-                    upper, item.auto_rxn_upper_safety_limit
+                    [upper, item["auto_rxn_upper_safety_limit"]]
                 )
         # fallback position
 
