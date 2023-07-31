@@ -14,7 +14,7 @@ from bluesky.utils import RequestStop
 from suitcase.csv import Serializer  # type: ignore
 import numpy as np
 
-from ._device import load_device, db_path
+from ._device import load_device
 from ._safety import SafetyCallback
 
 
@@ -37,6 +37,7 @@ def run(recipe):
     datadir.mkdir(exist_ok=True, parents=True)
     RE.subscribe(Serializer(datadir, flush=True))
     recipe.save(datadir / "recipe.csv")
+    from ._device import db_path
     shutil.copyfile(db_path, datadir / "db.json")
 
     safety = SafetyCallback(devices)

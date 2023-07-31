@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - support for child devices
 - support for fallback position
 
+### Changed
+- each run now stored in folder
+- happi db now backed up for each run
+- recipe now backed up for each run
+
 ## [2023.6.1]
 
 ### Added
