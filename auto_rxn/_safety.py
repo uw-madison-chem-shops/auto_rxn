@@ -18,8 +18,9 @@ class SafetyCallback(object):
         for name, device in self.devices.items():
             if "." in name:
                 continue
-            for suffix in ["setpoint", "readback"]:
-                key = "_".join([name, "readback"])
+            keys = ["_".join([name, suffix]) for suffix in ["setpoint", "readback", "destination"]]
+            keys.append(name)
+            for key in keys:
                 if key not in data:
                     continue
                 if device._happi_item["auto_rxn_lower_safety_limit"] is not None:

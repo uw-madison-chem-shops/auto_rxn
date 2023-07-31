@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - happi db now backed up for each run
 - recipe now backed up for each run
 
+### Fixed
+- safety features now support yaq devices
+
 ## [2023.6.1]
 
 ### Added
