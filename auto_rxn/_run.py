@@ -1,9 +1,12 @@
 __all__ = ["run"]
 
 
+import os
 import functools
 import pathlib
 import itertools
+import datetime
+import shutil
 
 import bluesky
 from bluesky.callbacks.best_effort import BestEffortCallback
@@ -27,7 +30,15 @@ def run(recipe):
     bec.disable_plots()
     RE.subscribe(bec)
 
-    RE.subscribe(Serializer("~/auto-rxn-data/", flush=True))
+    datadir = os.path.expanduser("~")
+    datadir += os.sep + "auto-rxn-data"
+    datadir += os.sep + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    datadir = pathlib.Path(datadir)
+    datadir.mkdir(exist_ok=True, parents=True)
+    RE.subscribe(Serializer(datadir, flush=True))
+    recipe.save(datadir / "recipe.csv")
+    from ._device import db_path
+    shutil.copyfile(db_path, datadir / "db.json")
 
     safety = SafetyCallback(devices)
     RE.subscribe(safety, "all")
