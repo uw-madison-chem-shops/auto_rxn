@@ -38,6 +38,7 @@ def run(recipe):
     RE.subscribe(Serializer(datadir, flush=True))
     recipe.save(datadir / "recipe.csv")
     from ._device import db_path
+
     shutil.copyfile(db_path, datadir / "db.json")
 
     safety = SafetyCallback(devices)
