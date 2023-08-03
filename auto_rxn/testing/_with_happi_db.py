@@ -6,7 +6,7 @@ import pathlib
 import platformdirs
 import happi  # type: ignore
 
-from auto_rxn import _device as auto_rxn_happi
+from .. import _device as auto_rxn_happi
 
 
 def with_happi_db(path):
