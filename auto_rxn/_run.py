@@ -15,7 +15,7 @@ from suitcase.csv import Serializer  # type: ignore
 import numpy as np
 
 from ._device import load_device
-from ._safety import SafetyCallback
+from ._limits import LimitsChecker, limits
 
 
 def run(recipe):
@@ -41,7 +41,7 @@ def run(recipe):
 
     shutil.copyfile(db_path, datadir / "db.json")
 
-    safety = SafetyCallback(devices)
+    safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
 
     def plan():
@@ -51,18 +51,19 @@ def run(recipe):
             for step, fallback_positions in zip(recipe.steps, recipe.fallback_positions):
                 # set fallback positions
                 for id, val in fallback_positions.setpoints.items():
-                    devices[id].set_fallback_position(val)
+                    limits.set_fallback(id, val)
 
                 # set positions
                 nestargs = [(devices[id], float(val)) for id, val in step.setpoints.items()]
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 
                 def fallback_to_safety(exception):
+                    print("FALLBack", exception)
                     RE.unsubscribe(safety_token)  # don't want to keep raising
                     nestargs = list()
-                    for device in devices.values():
-                        fallback = device.get_fallback_position()
-                        if fallback is not None:
+                    for name, device in devices.items():
+                        fallback = limits.get_fallback(name)
+                        if not np.isnan(fallback):
                             nestargs.append((device, fallback))
                     if nestargs:
                         yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))

@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- complete refactor of limits behavior, doesn't force metadata into happi anymore
+
 ## [2023.7.0]
 
 ### Added
