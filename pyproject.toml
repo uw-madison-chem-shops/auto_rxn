@@ -9,12 +9,14 @@ author = "auto_rxn developers"
 home-page = "https://github.com/uw-madison-chem-shops/auto_rxn"
 description-file = "README.md"
 requires-python = ">=3.9"
-requires = ["appdirs",
+requires = ["platformdirs",
             "click",
             "happi",
             "pandas",
             "bluesky",
             "suitcase-csv",
+	    "tomli",
+	    "tomli-w",
             ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",

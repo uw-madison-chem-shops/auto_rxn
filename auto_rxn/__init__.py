@@ -2,7 +2,7 @@
 
 from . import devices
 from .__version__ import *
+from ._limits import *
 from ._recipe import *
 from ._run import *
-from ._testing import *
 from ._device import *
