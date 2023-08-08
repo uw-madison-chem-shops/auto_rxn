@@ -1,27 +1,27 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.flit.metadata]
-module = "auto_rxn"
-dist-name = "auto_rxn"
+[project]
+name = "auto_rxn"
 author = "auto_rxn developers"
-home-page = "https://github.com/uw-madison-chem-shops/auto_rxn"
-description-file = "README.md"
 requires-python = ">=3.9"
-requires = ["platformdirs",
-            "click",
-            "happi",
-            "pandas",
-            "bluesky",
-            "suitcase-csv",
-	    "tomli",
-	    "tomli-w",
-            ]
+readme = "README.md"
+dynamic = ["version"]
+license = "MIT"
+dependencies = ["platformdirs",
+                "click",
+                "happi",
+                "pandas",
+                "bluesky",
+                "suitcase-csv",
+	        "tomli",
+      	        "tomli-w",
+                 ]
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
@@ -30,19 +30,23 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 
-[tool.flit.metadata.urls]
+[project.urls]
 Source = "https://github.com/uw-madison-chem-shops/auto_rxn"
 Issues = "https://github.com/uw-madison-chem-shops/auto_rxn/issues"
+"Home Page" = "https://github.com/uw-madison-chem-shops/auto_rxn"
 
 [tool.flit.metadata.requires-extra]
 dev = ["black", "pre-commit"]
 
-[tool.flit.scripts]
+[project.scripts]
 auto_rxn = "auto_rxn.__main__:main"
 
 [tool.flit.entrypoints."happi.containers"]
 fake_furnace = "auto_rxn.devices._fake_furnace"
 fake_mfc = "auto_rxn.devices._fake_mfc"
+
+[tool.hatch.version]
+path = "auto_rxn/__version__.py"
 
 [tool.black]
 line-length = 99
