@@ -12,7 +12,7 @@ class Limits(object):
 
     def __init__(self):
         self._path = platformdirs.user_data_path("auto-rxn") / "limits.toml"
-        self._path.parent.mkdir(exist_ok=True)
+        self._path.parent.mkdir(exist_ok=True, parents=True)
         self._path.touch(exist_ok=True)
         with open(self._path, "rb") as f:
             self._state = tomli.load(f)
