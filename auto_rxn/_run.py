@@ -41,6 +41,8 @@ def run(recipe):
 
     shutil.copyfile(db_path, datadir / "db.json")
 
+    limits.save(datadir / "limits.toml")
+
     safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
 

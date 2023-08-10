@@ -77,12 +77,15 @@ class Limits(object):
             self._set(control_id, "upper", float("+inf"))
         return self._get(control_id, "upper")
 
+    def save(self, path):
+        with open(path, "wb") as f:
+            tomli_w.dump(self._state, f)
+
     def _set(self, control_id, key, value):
         if control_id not in self._state:
             self._state[control_id] = dict()
         self._state[control_id][key] = value
-        with open(self._path, "wb") as f:
-            tomli_w.dump(self._state, f)
+        self.save(self._path)
 
     def set_atol(self, control_id, value):
         assert value >= 0
