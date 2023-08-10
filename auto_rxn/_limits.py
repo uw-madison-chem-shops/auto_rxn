@@ -25,6 +25,27 @@ class Limits(object):
     def _get(self, control_id, key):
         return self._state[control_id][key]
 
+    def get_atol(self, control_id):
+        try:
+            return self._get(control_id, "atol")
+        except KeyError:
+            self._set(control_id, "atol", float("+inf"))
+        return self._get(control_id, "atol")
+
+    def get_deadband(self, control_id):
+        try:
+            return self._get(control_id, "deadband")
+        except KeyError:
+            self._set(control_id, "deadband", 0.0)
+        return self._get(control_id, "deadband")
+
+    def get_delay(self, control_id):
+        try:
+            return self._get(control_id, "delay")
+        except KeyError:
+            self._set(control_id, "delay", 0.0)
+        return self._get(control_id, "delay")
+
     def get_fallback(self, control_id):
         try:
             return self._get(control_id, "fallback")
@@ -38,6 +59,13 @@ class Limits(object):
         except KeyError:
             self._set(control_id, "lower", float("-inf"))
         return self._get(control_id, "lower")
+
+    def get_rtol(self, control_id):
+        try:
+            return self._get(control_id, "rtol")
+        except KeyError:
+            self._set(control_id, "rtol", 0.0)
+        return self._get(control_id, "rtol")
 
     def get_upper(self, control_id):
         try:
@@ -53,11 +81,27 @@ class Limits(object):
         with open(self._path, "wb") as f:
             tomli_w.dump(self._state, f)
 
+    def set_atol(self, control_id, value):
+        assert value >= 0
+        return self._set(control_id, "atol", value)
+
+    def set_deadband(self, control_id, value):
+        assert value >= 0
+        return self._set(control_id, "deadband", value)
+
+    def set_delay(self, control_id, value):
+        assert value >= 0
+        return self._set(control_id, "delay", value)
+
     def set_fallback(self, control_id, value):
         return self._set(control_id, "fallback", value)
 
     def set_lower(self, control_id, value):
         return self._set(control_id, "lower", value)
+
+    def set_rtol(self, control_id, value):
+        assert value >= 0
+        return self._set(control_id, "rtol", value)
 
     def set_upper(self, control_id, value):
         return self._set(control_id, "upper", value)
