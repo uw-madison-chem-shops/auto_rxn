@@ -1,6 +1,9 @@
 __all__ = ["limits", "LimitsChecker"]
 
 
+import time
+from typing import Dict
+
 import numpy as np
 import platformdirs
 import tomli
@@ -115,19 +118,57 @@ class LimitsChecker(object):
         self.devices = devices
         self.current_step = None
         self.i = 0
+        self.last_pass: Dict[str, float] = dict()
+        self.fail_cache: Dict[str, str] = dict()
 
     def __call__(self, name, document):
         """Consumes the document stream."""
+        now = time.time()
         if "data" not in document:
             return
         data = document["data"]
+        for name, device in self.devices.items():
+            if f"{name}_setpoint" in data:
+                setpoint = data[f"{name}_setpoint"]
+            else:
+                setpoint = data.get(f"{name}_destination", np.nan)
+            if f"{name}_readback" in data:
+                readback = data[f"{name}_readback"]
+            else:
+                readback = data.get(name, np.nan)
+            # if you're inside the deadband, always pass
+            deadband = limits.get_deadband(name)
+            if (0 - deadband) < setpoint < (0 + deadband):
+                if (0 - deadband) < readback < (0 + deadband):
+                    self.last_pass[name] = time.time()
+                    continue
+            # limits apply to setpoint and readback
+            if setpoint < limits.get_lower(name):
+                self.fail_cache[name] = f"{name} went below safety limit!"
+                continue
+            if readback < limits.get_lower(name):
+                self.fail_cache[name] = f"{name} went below safety limit!"
+                continue
+            if setpoint > limits.get_upper(name):
+                self.fail_cache[name] = f"{name} went above safety limit!"
+                continue
+            if readback > limits.get_upper(name):
+                self.fail_cache[name] = f"{name} went above safety limit!"
+                continue
+            # atol
+            if np.abs(setpoint - readback) > limits.get_atol(name):
+                self.fail_cache[name] = f"{name} went outside of absolute tolerance"
+                continue
+            # rtol
+            if np.abs((setpoint - readback) / setpoint) * 100 > limits.get_rtol(name):
+                self.fail_cache[name] = f"{name} went outside of absolute tolerance"
+                continue
+            self.last_pass[name] = time.time()
         for name, device in self.devices.items():
             keys = ["_".join([name, suffix]) for suffix in ["setpoint", "readback", "destination"]]
             keys.append(name)
             for key in keys:
                 if key not in data:
                     continue
-                if data[key] < limits.get_lower(name):
-                    raise Exception(f"{name} went below safety limit!")
-                if data[key] > limits.get_upper(name):
-                    raise Exception(f"{name} went above safety limit ({limits.get_upper(name)})!")
+                if now - self.last_pass[name] > limits.get_delay(name):
+                    raise Exception(self.fail_cache[name])
