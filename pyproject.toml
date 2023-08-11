@@ -35,13 +35,14 @@ Source = "https://github.com/uw-madison-chem-shops/auto_rxn"
 Issues = "https://github.com/uw-madison-chem-shops/auto_rxn/issues"
 "Home Page" = "https://github.com/uw-madison-chem-shops/auto_rxn"
 
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 dev = ["black", "pre-commit"]
 
 [project.scripts]
 auto_rxn = "auto_rxn.__main__:main"
+auto-rxn = "auto_rxn.__main__:main"
 
-[tool.flit.entrypoints."happi.containers"]
+[project.entry-points."happi.containers"]
 fake_furnace = "auto_rxn.devices._fake_furnace"
 fake_mfc = "auto_rxn.devices._fake_mfc"
 

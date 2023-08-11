@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
 import click
+import platformdirs
+import sys
+import subprocess
+import os
+
 
 from ._device import happi_client
 from .__version__ import __version__
@@ -15,7 +20,19 @@ def main():
     pass
 
 
-@main.command(name="list_devices")
+@main.command(name="edit-limits")
+def _edit_limits():
+    path = platformdirs.user_data_path("auto-rxn") / "limits.toml"
+    if sys.platform.startswith("win32"):
+        import shutil
+
+        editor = shutil.which(os.environ.get("EDITOR", "notepad.exe"))
+        subprocess.run([editor, str(path)])
+    else:
+        subprocess.run([os.environ.get("EDITOR", "vi"), str(path)])
+
+
+@main.command(name="list-devices")
 def _list_devices():
 
     def print_all_limits(control_id):
