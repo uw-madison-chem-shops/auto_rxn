@@ -17,7 +17,6 @@ def main():
 
 @main.command(name="list_devices")
 def _list_devices():
-
     def print_all_limits(control_id):
         print(f"    atol: {limits.get_atol(control_id)}")
         print(f"    deadband: {limits.get_deadband(control_id)}")
