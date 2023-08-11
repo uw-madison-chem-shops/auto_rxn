@@ -41,6 +41,8 @@ def run(recipe):
 
     shutil.copyfile(db_path, datadir / "db.json")
 
+    limits.save(datadir / "limits.toml")
+
     safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
 
@@ -58,7 +60,8 @@ def run(recipe):
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 
                 def fallback_to_safety(exception):
-                    print("FALLBack", exception)
+                    print(exception)
+                    print("recovering to fallback positions")
                     RE.unsubscribe(safety_token)  # don't want to keep raising
                     nestargs = list()
                     for name, device in devices.items():

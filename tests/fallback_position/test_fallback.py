@@ -13,6 +13,7 @@ happi_db = __here__ / "db.json"
 @testing.with_limit_set_to("myfurnace", "lower", float("-inf"))
 @testing.with_limit_set_to("myfurnace", "upper", 250.0)
 @testing.with_limit_set_to("myfurnace", "fallback", 50.0)
+@testing.with_limit_set_to("myfurnace", "delay", 5)
 @testing.with_limit_set_to("mymfc", "lower", float("-inf"))
 @testing.with_limit_set_to("mymfc", "upper", float("+inf"))
 @testing.with_happi_db(happi_db)

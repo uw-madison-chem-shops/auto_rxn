@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- added concept of tolerance to limits: atol, rtol
+- added concept of deadband to limits
+- added concept of delay to limits
+- added new command auto-rxn edit-limits
+
 ## [2023.8.1]
 
 ### Fixed
