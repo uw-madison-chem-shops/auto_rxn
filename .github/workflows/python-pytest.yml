@@ -25,6 +25,7 @@ jobs:
         python -m pip install --upgrade hatchling
         python -m pip install --upgrade wheel pytest numpy
         python -m pip install --upgrade appdirs click happi pandas bluesky suitcase-csv matplotlib
+        python -m pip install --upgrade yaqd-fakes
         python -m pip install . --no-build-isolation
     - name: Pytest
       run: |
