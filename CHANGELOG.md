@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - added concept of deadband to limits
 - added concept of delay to limits
 - added new command auto-rxn edit-limits
+- now support setting discrete hardware from recipe file, by identifier
 
 ## [2023.8.1]
 
@@ -61,4 +62,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [2023.6.1]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.6.0...v2023.6.1
 [2023.6.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.4.0...v2023.6.0
 [2023.4.0]: https://github.com/uw-madison-chem-shops/auto_rxn/tags/v2023.4.0
-
