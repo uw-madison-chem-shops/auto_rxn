@@ -56,7 +56,7 @@ def run(recipe):
                     limits.set_fallback(id, val)
 
                 # set positions
-                nestargs = [(devices[id], float(val)) for id, val in step.setpoints.items()]
+                nestargs = [(devices[id], val) for id, val in step.setpoints.items()]
                 yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
 
                 def fallback_to_safety(exception):
@@ -66,7 +66,10 @@ def run(recipe):
                     nestargs = list()
                     for name, device in devices.items():
                         fallback = limits.get_fallback(name)
-                        if not np.isnan(fallback):
+                        try:
+                            if not np.isnan(fallback):
+                                nestargs.append((device, fallback))
+                        except TypeError:  # fallback is a string, probably
                             nestargs.append((device, fallback))
                     if nestargs:
                         yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))

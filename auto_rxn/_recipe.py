@@ -57,6 +57,19 @@ class Recipe:
                 row_index += 1
             except KeyError:
                 break
+        # attempt to coerce all to float
+        for step in self.steps:
+            for k, v in step.setpoints.items():
+                try:
+                    step.setpoints[k] = float(v)
+                except ValueError:
+                    continue
+        for step in self.fallback_positions:
+            for k, v in step.setpoints.items():
+                try:
+                    step.setpoints[k] = float(v)
+                except ValueError:
+                    continue
 
     def save(self, filepath) -> pathlib.Path:
         path = pathlib.Path(filepath)

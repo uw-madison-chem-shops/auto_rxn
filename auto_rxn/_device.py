@@ -41,9 +41,5 @@ def load_device(id) -> Any:
     else:
         # grab device from happi
         device = happi_client.load_device(name=id)
-        item = happi_client.find_item(name=id)
-        setattr(device, "_happi_item", item)
-        # finish
-        item.save()
         device_singletons[id] = device
         return device
