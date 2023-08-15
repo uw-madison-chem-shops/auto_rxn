@@ -139,6 +139,13 @@ class LimitsChecker(object):
                 readback = data[f"{name}_readback"]
             else:
                 readback = data.get(name, np.nan)
+            # if we're operating with discrete data, always pass
+            if isinstance(setpoint, str):
+                self.last_pass[name] = time.time()
+                continue
+            if isinstance(readback, str):
+                self.last_pass[name] = time.time()
+                continue
             # if you're inside the deadband, always pass
             deadband = limits.get_deadband(name)
             if (0 - deadband) < setpoint < (0 + deadband):
