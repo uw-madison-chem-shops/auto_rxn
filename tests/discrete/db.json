@@ -1,0 +1,138 @@
+{
+    "d1": {
+        "_id": "d1",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-continuous-hardware at 127.0.0.1:38100",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 18:50:27 2023",
+        "name": "d1",
+        "port": 38100,
+        "type": "yaq._happi.YAQItem"
+    },
+    "d2": {
+        "_id": "d2",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-continuous-hardware at 127.0.0.1:38101",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 18:50:27 2023",
+        "name": "d2",
+        "port": 38101,
+        "type": "yaq._happi.YAQItem"
+    },
+    "d3": {
+        "_id": "d3",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-continuous-hardware at 127.0.0.1:38102",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 18:50:27 2023",
+        "name": "d3",
+        "port": 38102,
+        "type": "yaq._happi.YAQItem"
+    },
+    "discrete": {
+        "_id": "discrete",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-discrete-hardware at 127.0.0.1:39001",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 19:27:56 2023",
+        "name": "discrete",
+        "port": 39001,
+        "type": "yaq._happi.YAQItem"
+    },
+    "myfurnace": {
+        "_id": "myfurnace",
+        "active": true,
+        "args": [],
+        "creation": "Thu Jun  8 15:05:57 2023",
+        "device_class": "auto_rxn.devices.FakeFurnace",
+        "documentation": null,
+        "kwargs": {
+            "name": "{{name}}"
+        },
+        "last_edit": "Mon Aug 14 19:24:31 2023",
+        "name": "myfurnace",
+        "type": "fake_furnace.devices._fake_furnace.FakeFurnaceItem"
+    },
+    "mymfc": {
+        "_id": "mymfc",
+        "active": true,
+        "args": [],
+        "creation": "Fri Apr 14 16:44:36 2023",
+        "device_class": "auto_rxn.devices.FakeMFC",
+        "documentation": null,
+        "kwargs": {
+            "name": "{{name}}"
+        },
+        "last_edit": "Thu Aug 10 16:01:15 2023",
+        "name": "mymfc",
+        "type": "fake_mfc.devices._fake_mfc.FakeMFCItem"
+    },
+    "mymotor": {
+        "_id": "mymotor",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-continuous-hardware at 127.0.0.1:39000",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 19:24:31 2023",
+        "name": "mymotor",
+        "port": 39000,
+        "type": "yaq._happi.YAQItem"
+    },
+    "pmt": {
+        "_id": "pmt",
+        "active": true,
+        "args": [],
+        "creation": "Mon Aug 14 18:50:26 2023",
+        "device_class": "yaqc_bluesky.Device",
+        "documentation": "yaq:fake-triggered-sensor at 127.0.0.1:38200",
+        "host": "127.0.0.1",
+        "kwargs": {
+            "host": "{{host}}",
+            "name": "{{name}}",
+            "port": "{{port}}"
+        },
+        "last_edit": "Mon Aug 14 18:50:27 2023",
+        "name": "pmt",
+        "port": 38200,
+        "type": "yaq._happi.YAQItem"
+    }
+}
