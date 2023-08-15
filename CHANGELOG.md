@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- when rtol triggered, succesfully announce as rtol and not atol
+- rtol default is now +inf, not zero
+
 ## [2023.8.2]
 
 ### Added

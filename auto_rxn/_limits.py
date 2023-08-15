@@ -67,7 +67,7 @@ class Limits(object):
         try:
             return self._get(control_id, "rtol")
         except KeyError:
-            self._set(control_id, "rtol", 0.0)
+            self._set(control_id, "rtol", float("+inf"))
         return self._get(control_id, "rtol")
 
     def get_upper(self, control_id):
@@ -171,7 +171,7 @@ class LimitsChecker(object):
                 continue
             # rtol
             if np.abs((setpoint - readback) / setpoint) * 100 > limits.get_rtol(name):
-                self.fail_cache[name] = f"{name} went outside of absolute tolerance"
+                self.fail_cache[name] = f"{name} went outside of relative tolerance"
                 continue
             self.last_pass[name] = time.time()
         for name, device in self.devices.items():
