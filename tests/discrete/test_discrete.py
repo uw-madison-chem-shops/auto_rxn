@@ -13,6 +13,7 @@ happi_db = __here__ / "db.json"
 
 @yct.run_daemon_entry_point("fake-continuous-hardware", config=__here__ / "continuous-config.toml")
 @yct.run_daemon_entry_point("fake-discrete-hardware", config=__here__ / "discrete-config.toml")
+@testing.with_limit_set_to("myfurnace", "upper", 250.0)
 @testing.with_happi_db(happi_db)
 def test_fallback():
     discrete = auto_rxn.load_device("discrete")
