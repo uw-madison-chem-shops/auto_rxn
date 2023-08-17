@@ -5,9 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [2023.8.3]
+
+### Added
+- documentation
+
 ### Fixed
 - when rtol triggered, succesfully announce as rtol and not atol
 - rtol default is now +inf, not zero
+- rtol is ignored when SV < 1e-6
 
 ## [2023.8.2]
 
@@ -61,7 +67,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.2...main
+[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.3...main
+[2023.8.3]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.2...v2023.8.3
 [2023.8.2]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.1...v2023.8.2
 [2023.8.1]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.0...v2023.8.1
 [2023.8.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.7.0...v2023.8.0

@@ -170,9 +170,10 @@ class LimitsChecker(object):
                 self.fail_cache[name] = f"{name} went outside of absolute tolerance"
                 continue
             # rtol
-            if np.abs((setpoint - readback) / setpoint) * 100 > limits.get_rtol(name):
-                self.fail_cache[name] = f"{name} went outside of relative tolerance"
-                continue
+            if np.abs(setpoint - 0.0) > 1e-6:
+                if np.abs((setpoint - readback) / setpoint) * 100 > limits.get_rtol(name):
+                    self.fail_cache[name] = f"{name} went outside of relative tolerance"
+                    continue
             self.last_pass[name] = time.time()
         for name, device in self.devices.items():
             keys = ["_".join([name, suffix]) for suffix in ["setpoint", "readback", "destination"]]
