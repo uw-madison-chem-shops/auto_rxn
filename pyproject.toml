@@ -33,7 +33,7 @@ classifiers = [
 [project.urls]
 Source = "https://github.com/uw-madison-chem-shops/auto_rxn"
 Issues = "https://github.com/uw-madison-chem-shops/auto_rxn/issues"
-"Home Page" = "https://github.com/uw-madison-chem-shops/auto_rxn"
+"Home Page" = "https://uw-madison-chem-shops.github.io/auto_rxn/"
 
 [project.optional-dependencies]
 dev = ["black", "pre-commit"]
