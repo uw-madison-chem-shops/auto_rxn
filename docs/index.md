@@ -1,17 +1,22 @@
 # auto-rxn
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Python package for running chemical reactions as defined by "recipe" files.
 
-## Commands
+## original design
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Credit for original design of this interface goes to Unni Kurumbail of the Herman's Group at University of Wisconsin-Madison Chemistry Department.
 
-## Project layout
+<https://github.com/ukurumbail/auto_rxn>
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## enabling technologies
+
+Auto-rxn relies on a host of larger open-source software projects, highlighted here.
+
+[Bluesky](https://blueskyproject.io/bluesky/), a Python library for experimental orchestration.
+
+[HAPPI](https://pcdshub.github.io/happi/), a database for access to hardware interfaces.
+
+[yaq](https://yaq.fyi/), a modular and extensible instrument control framework. 
+
+The large scientific python ecosystem, especially [NumPy](https://numpy.org/), [pandas](https://pandas.pydata.org/), and [Matplotlib](https://matplotlib.org/). ❤️
+
