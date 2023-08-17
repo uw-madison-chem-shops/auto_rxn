@@ -1,7 +1,7 @@
 # adding devices
 
 Auto-rxn has been built to be as flexible as possible in accepting devices.
-Any device supporting [Bluesky protocols](https://blueskyproject.io/bluesky/hardware) should work, including a growing ecosystem of [hardware interface packages](https://blueskyproject.io/bluesky/hardware-interfaces). 
+Any device supporting [Bluesky protocols](https://blueskyproject.io/bluesky/hardware) should work, including a growing ecosystem of [hardware interface packages](https://blueskyproject.io/bluesky/hardware-interfaces).
 
 Auto-rxn relies on [HAPPI](https://pcdshub.github.io/happi/) for device-discovery.
 HAPPI provides a persistant database of what devices are avaliable on a given machine, and how to construct a Python interface to each device.
@@ -20,7 +20,7 @@ You can quickly create these files in their default locations by typing the foll
 
 ```bash
 $ happi config init
-``` 
+```
 
 If your database is broken and you want to start fresh, you can do so using the following flag.
 Be careful, as this will delete your current database!

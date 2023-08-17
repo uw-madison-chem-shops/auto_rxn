@@ -16,7 +16,7 @@ Auto-rxn relies on a host of larger open-source software projects, highlighted h
 
 [HAPPI](https://pcdshub.github.io/happi/), a database for access to hardware interfaces.
 
-[yaq](https://yaq.fyi/), a modular and extensible instrument control framework. 
+[yaq](https://yaq.fyi/), a modular and extensible instrument control framework.
 
 The large scientific python ecosystem, especially [NumPy](https://numpy.org/), [pandas](https://pandas.pydata.org/), and [Matplotlib](https://matplotlib.org/). ❤️
 

@@ -19,7 +19,7 @@ $ auto-rxn list-devices
 ```
 
 A copy of the limits as they were at the start of each reaction are stored in the `auto-rxn-data` directory.
-It's important to note that this backup occurs immediately before the recipe runs since fallback positions can change over the course of a reaction. 
+It's important to note that this backup occurs immediately before the recipe runs since fallback positions can change over the course of a reaction.
 
 Limits can always be numerical, including `+inf`, `-inf`, and (in some cases) `nan`.
 Limits can sometimes be strings, for devices that accept string arguments to set (in a yaq context, daemons following [is-discrete](https://yeps.yaq.fyi/309/) trait).
@@ -31,7 +31,7 @@ If any limit is exceeded for any control point, each control point will be set t
 A fallback of `nan` tells auto-rxn to leave that control point where it is during a fault.
 
 Fallback can be set directly using `$ auto-rxn edit-limits`, or set during a recipe by appending `fallback_position` to the control point ID. For example, if your control point is furnace you could set the ID `furnace.fallback_position`.
-Auto-rxn supports this feature because sometimes the ideal fallback positions are dependent on the step within the recipe.   
+Auto-rxn supports this feature because sometimes the ideal fallback positions are dependent on the step within the recipe.
 
 ## lower and upper
 
