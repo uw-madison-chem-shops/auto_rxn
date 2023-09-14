@@ -56,23 +56,20 @@ def run(recipe):
                     limits.set_fallback(id, val)
 
                 # set positions
-                nestargs = [(devices[id], val) for id, val in step.setpoints.items()]
-                yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
+                for id, val in step.setpoints.items():
+                    yield from bluesky.plan_stubs.abs_set(devices[id], val)
 
                 def fallback_to_safety(exception):
                     print(exception)
                     print("recovering to fallback positions")
                     RE.unsubscribe(safety_token)  # don't want to keep raising
-                    nestargs = list()
                     for name, device in devices.items():
                         fallback = limits.get_fallback(name)
                         try:
                             if not np.isnan(fallback):
-                                nestargs.append((device, fallback))
+                                yield from bluesky.plan_stubs.abs_set(device, fallback)
                         except TypeError:  # fallback is a string, probably
-                            nestargs.append((device, fallback))
-                    if nestargs:
-                        yield from bluesky.plan_stubs.mv(*itertools.chain(*nestargs))
+                            yield from bluesky.plan_stubs.abs_set(device, fallback)
                     # keep recording data for 100 more seconds
                     yield from bluesky.plan_stubs.repeat(
                         functools.partial(bluesky.plan_stubs.one_shot, all_devices),
