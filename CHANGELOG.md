@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [2023.9.0]
+
+### Fixed
+- auto_rxn no-longer waits for busy hardware, using abs_set instead of mv
+
 ## [2023.8.3]
 
 ### Added
@@ -67,7 +72,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.3...main
+[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.9.0...main
+[2023.9.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.3...v2023.9.0
 [2023.8.3]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.2...v2023.8.3
 [2023.8.2]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.1...v2023.8.2
 [2023.8.1]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.0...v2023.8.1
