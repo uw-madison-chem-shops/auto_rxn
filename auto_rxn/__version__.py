@@ -10,7 +10,7 @@ here = pathlib.Path(__file__).resolve().parent
 
 __all__ = ["__version__", "__branch__"]
 
-__version__ = "2023.8.3"
+__version__ = "2023.9.0"
 
 
 try:
