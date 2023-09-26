@@ -5,6 +5,7 @@ import platformdirs
 import sys
 import subprocess
 import os
+import tomli
 
 
 from ._device import happi_client
@@ -18,6 +19,31 @@ from ._limits import limits
 @click.version_option(__version__)
 def main():
     pass
+
+
+@main.command(name="edit-config")
+def edit_config():
+    path = platformdirs.user_config_path("auto-rxn") / "config.toml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.touch(exist_ok=True)
+
+    while True:
+        if sys.platform.startswith("win32"):
+            subprocess.run([os.environ.get("EDITOR", "notepad.exe"), str(path)])
+        else:
+            subprocess.run([os.environ.get("EDITOR", "vi"), path])
+        try:
+            with open(path, "rb") as f:
+                tomli.load(f)
+            break
+        except Exception as e:
+            print(e, file=sys.stderr)
+
+            if not click.confirm(
+                "Error parsing config toml. Would you like to re-edit?",
+                default=True,
+            ):
+                break
 
 
 @main.command(name="edit-limits")

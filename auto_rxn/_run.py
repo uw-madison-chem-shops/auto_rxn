@@ -8,6 +8,8 @@ import itertools
 import datetime
 import shutil
 
+import tomli
+import platformdirs
 import bluesky
 from bluesky.callbacks.best_effort import BestEffortCallback
 from bluesky.utils import RequestStop
@@ -21,10 +23,24 @@ from ._limits import LimitsChecker, limits
 def run(recipe):
     RE = bluesky.RunEngine()
 
+    path = platformdirs.user_config_path("auto-rxn") / "config.toml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.touch(exist_ok=True)
+    with open(path, "rb") as f:
+        config = tomli.load(f)
+
     devices = dict()
     for id in recipe.control_point_ids:
         devices[id] = load_device(id)
     all_devices = list(devices.values())
+
+    if "streams" in config:
+        if "primary" in config["streams"]:
+            if "devices" in config["streams"]["primary"]:
+                for id in config["streams"]["primary"]["devices"]:
+                    if id in recipe.control_point_ids:
+                        continue
+                    all_devices.append(load_device(id))
 
     bec = BestEffortCallback()
     bec.disable_plots()
