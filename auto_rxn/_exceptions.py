@@ -39,8 +39,7 @@ class StatusTimeoutError(TimeoutError, AutoRxnException):
     ...
 
 
-class UseNewProperty(RuntimeError, AutoRxnException):
-    ...
+class UseNewProperty(RuntimeError, AutoRxnException): ...
 
 
 class WaitTimeoutError(TimeoutError, AutoRxnException):
