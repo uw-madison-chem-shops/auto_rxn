@@ -67,7 +67,7 @@ def _get_module():
 
 
 def stage(
-    recipe: auto_rxn._recipe.Recipe,
+    recipe: Recipe,
     RE: bluesky.RunEngine,
     devices: List[bluesky.protocols.Readable],
     datadir: pathlib.Path,
@@ -79,7 +79,7 @@ def stage(
 
 
 def unstage(
-    recipe: auto_rxn._recipe.Recipe,
+    recipe: Recipe,
     RE: bluesky.RunEngine,
     devices: List[bluesky.protocols.Readable],
     datadir: pathlib.Path,
