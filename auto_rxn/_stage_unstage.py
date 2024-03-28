@@ -10,7 +10,6 @@ from bluesky import protocols
 import auto_rxn
 
 
-
 script_path = platformdirs.user_data_path("auto-rxn") / "stage_unstage.py"
 
 
@@ -60,29 +59,32 @@ if not script_path.is_file():
 
 def _get_module():
     spec = importlib.util.spec_from_file_location(
-                script_path.name.removesuffix(script_path.suffix), script_path
-           )
+        script_path.name.removesuffix(script_path.suffix), script_path
+    )
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
-def stage(recipe: auto_rxn._recipe.Recipe,
-          RE: bluesky.RunEngine,
-          devices: List[bluesky.protocols.Readable],
-          datadir: pathlib.Path,
-          *args,
-          **kwargs
-          ) -> None:
+
+def stage(
+    recipe: auto_rxn._recipe.Recipe,
+    RE: bluesky.RunEngine,
+    devices: List[bluesky.protocols.Readable],
+    datadir: pathlib.Path,
+    *args,
+    **kwargs,
+) -> None:
     module = _get_module()
     module.stage(recipe, RE, devices, datadir, *args, **kwargs)
 
 
-def unstage(recipe: auto_rxn._recipe.Recipe,
-            RE: bluesky.RunEngine,
-            devices: List[bluesky.protocols.Readable],
-            datadir: pathlib.Path,
-            *args,
-            **kwargs
-            ) -> None:
+def unstage(
+    recipe: auto_rxn._recipe.Recipe,
+    RE: bluesky.RunEngine,
+    devices: List[bluesky.protocols.Readable],
+    datadir: pathlib.Path,
+    *args,
+    **kwargs,
+) -> None:
     module = _get_module()
     module.unstage(recipe, RE, devices, datadir, *args, **kwargs)

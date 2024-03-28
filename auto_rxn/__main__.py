@@ -63,6 +63,7 @@ def _edit_limits():
 def _edit_stage_unstage():
     if sys.platform.startswith("win32"):
         import shutil
+
         editor = shutil.which(os.environ.get("EDITOR", "notepad.exe"))
         subprocess.run([editor, str(script_path)])
     else:
