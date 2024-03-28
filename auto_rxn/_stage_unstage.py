@@ -7,7 +7,7 @@ import numpy as np
 import bluesky
 from bluesky import protocols
 
-import auto_rxn
+from ._recipe import Recipe
 
 
 
@@ -31,7 +31,7 @@ from bluesky import protocols
 import auto_rxn
 
 
-def stage(recipe: auto_rxn._recipe.Recipe,
+def stage(recipe: auto_rxn.Recipe,
           RE: bluesky.RunEngine,
           devices: List[bluesky.protocols.Readable],
           datadir: pathlib.Path,
@@ -41,7 +41,7 @@ def stage(recipe: auto_rxn._recipe.Recipe,
     pass
 
 
-def unstage(recipe: auto_rxn._recipe.Recipe,
+def unstage(recipe: auto_rxn.Recipe,
             RE: bluesky.RunEngine,
             devices: List[bluesky.protocols.Readable],
             datadir: pathlib.Path,
@@ -66,7 +66,7 @@ def _get_module():
     spec.loader.exec_module(module)
     return module
 
-def stage(recipe: auto_rxn._recipe.Recipe,
+def stage(recipe: Recipe,
           RE: bluesky.RunEngine,
           devices: List[bluesky.protocols.Readable],
           datadir: pathlib.Path,
@@ -77,7 +77,7 @@ def stage(recipe: auto_rxn._recipe.Recipe,
     module.stage(recipe, RE, devices, datadir, *args, **kwargs)
 
 
-def unstage(recipe: auto_rxn._recipe.Recipe,
+def unstage(recipe: Recipe,
             RE: bluesky.RunEngine,
             devices: List[bluesky.protocols.Readable],
             datadir: pathlib.Path,
