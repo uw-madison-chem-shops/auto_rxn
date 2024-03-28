@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [2024.3.0]
+
 ### Added
 - config file
 - config option for adding additional devices to primary stream
