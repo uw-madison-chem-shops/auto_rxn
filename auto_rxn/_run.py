@@ -19,6 +19,8 @@ import numpy as np
 from ._device import load_device
 from ._limits import LimitsChecker, limits
 
+from . import _stage_unstage as su
+
 
 def run(recipe):
     RE = bluesky.RunEngine()
@@ -106,4 +108,6 @@ def run(recipe):
 
         return (yield from inner_plan())
 
+    su.stage(recipe, RE, devices, datadir)
     RE(plan())
+    su.unstage(recipe, RE, devices, datadir)

@@ -13,6 +13,7 @@ from .__version__ import __version__
 from ._recipe import Recipe
 from ._run import run
 from ._limits import limits
+from ._stage_unstage import script_path
 
 
 @click.group()
@@ -56,6 +57,17 @@ def _edit_limits():
         subprocess.run([editor, str(path)])
     else:
         subprocess.run([os.environ.get("EDITOR", "vi"), str(path)])
+
+
+@main.command(name="edit-stage-unstage")
+def _edit_stage_unstage():
+    if sys.platform.startswith("win32"):
+        import shutil
+
+        editor = shutil.which(os.environ.get("EDITOR", "notepad.exe"))
+        subprocess.run([editor, str(script_path)])
+    else:
+        subprocess.run([os.environ.get("EDITOR", "vi"), str(script_path)])
 
 
 @main.command(name="list-devices")

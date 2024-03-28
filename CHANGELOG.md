@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - config file
 - config option for adding additional devices to primary stream
+- new functionality for running arbitrary python before and after plan
+- new entry point auto-rxn edit-stage-unstage
 
 ## [2023.9.0]
 
