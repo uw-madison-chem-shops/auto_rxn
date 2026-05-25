@@ -4,7 +4,6 @@ import os
 import auto_rxn
 from auto_rxn import testing
 
-
 __here__ = pathlib.Path(__file__).parent
 happi_db = __here__ / "db.json"
 

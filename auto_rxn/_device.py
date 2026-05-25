@@ -12,7 +12,6 @@ from bluesky import protocols
 
 from ._limits import Limits
 
-
 # make happi client
 db_path = platformdirs.user_data_path("happi") / "db.json"
 happi_backend = happi.backends.backend(db_path)
