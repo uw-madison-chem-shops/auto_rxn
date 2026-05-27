@@ -17,6 +17,7 @@ dependencies = ["platformdirs",
                 "suitcase-csv",
 	        "tomli",
       	        "tomli-w",
+                "requests",
                  ]
 classifiers = [
     "Development Status :: 4 - Beta",
