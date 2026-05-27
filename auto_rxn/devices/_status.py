@@ -15,7 +15,6 @@ from .._exceptions import (
     UseNewProperty,
 )
 
-
 """
 The Status class has been adapted from ophyd:
 https://github.com/bluesky/ophyd
