@@ -18,11 +18,12 @@ import numpy as np
 
 from ._device import load_device
 from ._limits import LimitsChecker, limits
+from ._mks import MksMultigas2030
 
 from . import _stage_unstage as su
 
 
-def run(recipe):
+def run(recipe, name="", with_mks=False):
     RE = bluesky.RunEngine()
 
     path = platformdirs.user_config_path("auto-rxn") / "config.toml"
@@ -51,6 +52,8 @@ def run(recipe):
     datadir = os.path.expanduser("~")
     datadir += os.sep + "auto-rxn-data"
     datadir += os.sep + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    if name:
+        datadir += "_" + name
     datadir = pathlib.Path(datadir)
     datadir.mkdir(exist_ok=True, parents=True)
     RE.subscribe(Serializer(datadir, flush=True))
@@ -64,11 +67,20 @@ def run(recipe):
     safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
 
+    if with_mks:
+        mks = MksMultigas2030()
+        (datadir / "mks").mkdir(exist_ok=True)
+
     def plan():
         @bluesky.preprocessors.stage_decorator(all_devices)
         @bluesky.preprocessors.run_decorator()
         def inner_plan():
+            step_index = 0
             for step, fallback_positions in zip(recipe.steps, recipe.fallback_positions):
+                if with_mks:
+                    # mks path
+                    mks.set_prn_path(str(datadir / "mks" / f"step_{str(step_index).zfill(3)}.prn"))
+
                 # set fallback positions
                 for id, val in fallback_positions.setpoints.items():
                     limits.set_fallback(id, val)
@@ -105,6 +117,7 @@ def run(recipe):
                     )
 
                 yield from count_until_next_set()
+                step_index += 1
 
         return (yield from inner_plan())
 
