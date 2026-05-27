@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [2026.5.0]
+
 ### Added
 - new argument --name when running recipes
 - support for mks IR reactor, --with-mks
@@ -85,7 +87,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.9.0...main
+[Unreleased]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2026.5.0...main
+[2026.5.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2024.3.0...v2026.5.0
+[2024.3.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.9.0...v2024.3.0
 [2023.9.0]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.3...v2023.9.0
 [2023.8.3]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.2...v2023.8.3
 [2023.8.2]: https://github.com/uw-madison-chem-shops/auto_rxn/compare/v2023.8.1...v2023.8.2
