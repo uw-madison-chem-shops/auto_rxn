@@ -93,6 +93,7 @@ def _list_devices():
 
 @main.command(name="run")
 @click.argument("recipe", type=click.Path())
-def _run(recipe):
+@click.option("--name", type=str, required=False)
+def _run(recipe, name=""):
     r = Recipe(recipe)
-    run(r)
+    run(r, name=name)
