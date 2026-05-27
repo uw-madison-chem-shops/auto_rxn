@@ -53,7 +53,7 @@ def run(recipe, name=""):
     datadir += os.sep + "auto-rxn-data"
     datadir += os.sep + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     if name:
-      datadir += "_" + name
+        datadir += "_" + name
     datadir = pathlib.Path(datadir)
     datadir.mkdir(exist_ok=True, parents=True)
     RE.subscribe(Serializer(datadir, flush=True))
@@ -66,9 +66,9 @@ def run(recipe, name=""):
 
     safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
-    
+
     mks = MksMultigas2030()
-    (datadir / "mks").mkdir(exist_ok=True) 
+    (datadir / "mks").mkdir(exist_ok=True)
 
     def plan():
         @bluesky.preprocessors.stage_decorator(all_devices)
@@ -78,7 +78,7 @@ def run(recipe, name=""):
             for step, fallback_positions in zip(recipe.steps, recipe.fallback_positions):
                 # mks path
                 mks.set_prn_path(str(datadir / "mks" / f"step_{str(step_index).zfill(3)}.prn"))
-                
+
                 # set fallback positions
                 for id, val in fallback_positions.setpoints.items():
                     limits.set_fallback(id, val)
