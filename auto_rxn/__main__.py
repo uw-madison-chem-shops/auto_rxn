@@ -94,6 +94,7 @@ def _list_devices():
 @main.command(name="run")
 @click.argument("recipe", type=click.Path())
 @click.option("--name", type=str, required=False)
-def _run(recipe, name=""):
+@click.option("--with-mks", is_flag=True)
+def _run(recipe, with_mks, name=""):
     r = Recipe(recipe)
-    run(r, name=name)
+    run(r, name=name, with_mks=with_mks)

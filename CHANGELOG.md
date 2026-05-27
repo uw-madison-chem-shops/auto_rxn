@@ -6,8 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Added
-- new flag --name when running recipes
-- support for mks IR reactor
+- new argument --name when running recipes
+- support for mks IR reactor, --with-mks
 
 ## [2024.3.0]
 

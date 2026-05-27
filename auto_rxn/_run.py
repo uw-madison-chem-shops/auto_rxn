@@ -23,7 +23,7 @@ from ._mks import MksMultigas2030
 from . import _stage_unstage as su
 
 
-def run(recipe, name=""):
+def run(recipe, name="", with_mks=False):
     RE = bluesky.RunEngine()
 
     path = platformdirs.user_config_path("auto-rxn") / "config.toml"
@@ -67,8 +67,9 @@ def run(recipe, name=""):
     safety = LimitsChecker(devices)
     safety_token = RE.subscribe(safety, "all")
 
-    mks = MksMultigas2030()
-    (datadir / "mks").mkdir(exist_ok=True)
+    if with_mks:
+        mks = MksMultigas2030()
+        (datadir / "mks").mkdir(exist_ok=True)
 
     def plan():
         @bluesky.preprocessors.stage_decorator(all_devices)
@@ -76,8 +77,9 @@ def run(recipe, name=""):
         def inner_plan():
             step_index = 0
             for step, fallback_positions in zip(recipe.steps, recipe.fallback_positions):
-                # mks path
-                mks.set_prn_path(str(datadir / "mks" / f"step_{str(step_index).zfill(3)}.prn"))
+                if with_mks:
+                    # mks path
+                    mks.set_prn_path(str(datadir / "mks" / f"step_{str(step_index).zfill(3)}.prn"))
 
                 # set fallback positions
                 for id, val in fallback_positions.setpoints.items():
