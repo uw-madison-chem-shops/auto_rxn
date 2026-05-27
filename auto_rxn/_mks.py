@@ -12,7 +12,8 @@ class MksMultigas2030(object):
                         <V Name="EVID_71"/>
                       </PollRequest>"""
         headers = {"Content-Type": "text/xml; charset=utf-8"}
-        requests.request("POST", self._base_url, headers=headers, data=payload)
+        r = requests.request("POST", self._base_url, headers=headers, data=payload)
+        return r.text
 
     def set_prn_path(self, path: str) -> None:
         try:
