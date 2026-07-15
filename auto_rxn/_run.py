@@ -98,14 +98,24 @@ def run(recipe, name="", with_mks=False):
                         try:
                             if not np.isnan(fallback):
                                 yield from bluesky.plan_stubs.abs_set(device, fallback)
+                                print(f"{name} falling back to {fallback}")
                         except TypeError:  # fallback is a string, probably
                             yield from bluesky.plan_stubs.abs_set(device, fallback)
+                            print(f"{name} falling back to {fallback}")
+                        except (
+                            Exception
+                        ) as e:  # something worse is happening with this device, e.g. yaq daemon crashed
+                            print(f"cannot set fallback for {name}: {e}")
                     # keep recording data for 100 more seconds
-                    yield from bluesky.plan_stubs.repeat(
-                        functools.partial(bluesky.plan_stubs.one_shot, all_devices),
-                        num=int(100),
-                        delay=1,
-                    )
+                    try:
+                        print("trying to collect trailing data (100 data points)")
+                        yield from bluesky.plan_stubs.repeat(
+                            functools.partial(bluesky.plan_stubs.one_shot, devices.values()),
+                            num=int(100),
+                            delay=1,
+                        )
+                    except Exception as e:  # time to give up
+                        print("failed to collect trailing data:", e)
                     raise RequestStop
 
                 @bluesky.preprocessors.contingency_decorator(except_plan=fallback_to_safety)

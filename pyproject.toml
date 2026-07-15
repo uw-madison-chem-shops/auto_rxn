@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "auto_rxn"
-author = "auto_rxn developers"
+authors = [ {name="auto_rxn developers"} ]
 requires-python = ">=3.9"
 readme = "README.md"
 dynamic = ["version"]
@@ -18,6 +18,7 @@ dependencies = ["platformdirs",
 	        "tomli",
       	        "tomli-w",
                 "requests",
+                "matplotlib",
                  ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -67,3 +68,16 @@ exclude = '''
   | dist
 )/
 '''
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[tool.pixi.dependencies]
+pip = "*"
+pytest = "*"
+yaqd-core = "*"
+yaqd-fakes = "*"
+yaqc-bluesky = "*"
+yaqd-control = ">=2026.6.0,<2027"
+
